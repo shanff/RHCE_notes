@@ -123,9 +123,9 @@ mysql -u root -p
 
 ``` shell
 MariaDB [(none)]> USE mysql; #go into mysql database
-SHOW TABLES; #list tables in mysql
-SELECT * FROM host; #return all records from host table
-DESCRIBE host; #show field details
+MariaDB [(mysql)]> SHOW TABLES; #list tables in mysql
+MariaDB [(mysql)]> SELECT * FROM host; #return all records from host table
+MariaDB [(mysql)]> DESCRIBE host; #show field details
 ```
 
 ### 1.3.3. Create Database
@@ -137,6 +137,7 @@ MariaDB [(none)]> CREATE DATABASE emails;
 ### 1.3.4. Create Table
 
 ``` shell
-MariaDB [(none)]> CREATE TABLE users (userID INT, userFirstName char(25), userLastName char(30), userEmailAddress char(50));
+MariaDB [(none)]> USE emails;
+MariaDB [(emails)]> CREATE TABLE users (userID INT, userFirstName char(25), userLastName char(30), userEmailAddress char(50));
 ```
 
