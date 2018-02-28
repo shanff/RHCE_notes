@@ -19,6 +19,11 @@
         - [1.3.2. Viewing Database Information](#132-viewing-database-information)
         - [1.3.3. Create Database](#133-create-database)
         - [1.3.4. Create Table](#134-create-table)
+    - [1.4. Perform Simple SQL Queries](#14-perform-simple-sql-queries)
+        - [1.4.1. Insert Record](#141-insert-record)
+        - [Delete Record](#delete-record)
+        - [Update Record](#update-record)
+        - [Selections](#selections)
 
 <!-- /TOC -->
 
@@ -121,23 +126,53 @@ mysql -u root -p
 
 ### 1.3.2. Viewing Database Information
 
-``` shell
-MariaDB [(none)]> USE mysql; #go into mysql database
-MariaDB [(mysql)]> SHOW TABLES; #list tables in mysql
-MariaDB [(mysql)]> SELECT * FROM host; #return all records from host table
-MariaDB [(mysql)]> DESCRIBE host; #show field details
+``` sql
+USE mysql; #go into mysql database
+SHOW TABLES; #list tables in mysql
+SELECT * FROM host; #return all records from host table
+DESCRIBE host; #show field details of host table
 ```
 
 ### 1.3.3. Create Database
 
-``` shell
-MariaDB [(none)]> CREATE DATABASE emails;
+``` sql
+CREATE DATABASE emails;
 ```
 
 ### 1.3.4. Create Table
 
-``` shell
-MariaDB [(none)]> USE emails;
-MariaDB [(emails)]> CREATE TABLE users (userID INT, userFirstName char(25), userLastName char(30), userEmailAddress char(50));
+``` sql
+USE emails;
+
+CREATE TABLE users (userID INT, userFirstName char(25), userLastName char(30), userEmailAddress char(50));
 ```
 
+## 1.4. Perform Simple SQL Queries 
+
+### 1.4.1. Insert Record
+
+``` sql
+USE emails;
+
+INSERT INTO users (userID, userFirstName, userLastName, userEmailAddress) VALUES (001, "Shawn", "Hanff", "shanff@gmail.com");
+```
+
+### Delete Record
+
+``` sql
+DELETE FROM users WHERE userID = 002;
+```
+
+### Update Record
+
+``` sql
+UPDATE users SET  userLastName="Jones",userEmailAddress="janejones@example.com" WHERE userID=3;
+```
+
+### Selections
+
+``` sql
+SELECT * FROM users WHERE userID > 4;
+SELECT * FROM users ORDER BY userID ASC;
+SELECT * FROM users WHERE userFirstName LIKE "%J%";
+```
