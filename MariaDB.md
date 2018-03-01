@@ -21,9 +21,12 @@
         - [1.3.4. Create Table](#134-create-table)
     - [1.4. Perform Simple SQL Queries](#14-perform-simple-sql-queries)
         - [1.4.1. Insert Record](#141-insert-record)
-        - [Delete Record](#delete-record)
-        - [Update Record](#update-record)
-        - [Selections](#selections)
+        - [1.4.2. Delete Record](#142-delete-record)
+        - [1.4.3. Update Record](#143-update-record)
+        - [1.4.4. Selections](#144-selections)
+    - [1.5. Backup and Restore Database](#15-backup-and-restore-database)
+        - [1.5.1. Dump the Database](#151-dump-the-database)
+    - [1.6. Restore the Database](#16-restore-the-database)
 
 <!-- /TOC -->
 
@@ -147,32 +150,61 @@ USE emails;
 CREATE TABLE users (userID INT, userFirstName char(25), userLastName char(30), userEmailAddress char(50));
 ```
 
-## 1.4. Perform Simple SQL Queries 
+## 1.4. Perform Simple SQL Queries
 
 ### 1.4.1. Insert Record
 
 ``` sql
 USE emails;
 
-INSERT INTO users (userID, userFirstName, userLastName, userEmailAddress) VALUES (001, "Shawn", "Hanff", "shanff@gmail.com");
+INSERT INTO users (userID, userFirstName, userLastName, userEmailAddress) VALUES (001, "John", "Doe", "john.doe@gmail.com");
 ```
 
-### Delete Record
+### 1.4.2. Delete Record
 
 ``` sql
 DELETE FROM users WHERE userID = 002;
 ```
 
-### Update Record
+### 1.4.3. Update Record
 
 ``` sql
-UPDATE users SET  userLastName="Jones",userEmailAddress="janejones@example.com" WHERE userID=3;
+UPDATE users SET userLastName="Jones",userEmailAddress="janejones@example.com" WHERE userID = 3;
 ```
 
-### Selections
+### 1.4.4. Selections
 
 ``` sql
 SELECT * FROM users WHERE userID > 4;
 SELECT * FROM users ORDER BY userID ASC;
 SELECT * FROM users WHERE userFirstName LIKE "%J%";
+SELECT * FROM users WHERE userLastName="Smith";
+```
+
+## 1.5. Backup and Restore Database
+
+### 1.5.1. Dump the Database
+
+>*Different backup scenarios*
+
+``` shell
+mkdir ~/backup
+cd ~/backup
+mysqldump -u root -p [dbname] > emails_backup.sql
+mysqldump -u root -p --databases [db1] [db2] > db1_db2_backup.sql
+mysqldump -u root -p --all-databases > all_backup.sql
+```
+
+## 1.6. Restore the Database
+
+>*In the case of no database present, create empty database first*
+
+``` sql
+CREATE DATABASE emails;
+```
+
+>*Then we can restore the backed up database*
+
+``` shell
+mysql -u root -p emails < emails_backup.sql
 ```
