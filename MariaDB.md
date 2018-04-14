@@ -87,8 +87,8 @@ mysql -u root -p
 
 ### 1.1.8. Grant access to remote user/ip
 
-``` shell
-MariaDB [(none)]> GRANT ALL ON *.* TO root@'192.168.33.101' IDENTIFIED BY 'redhat';
+``` sql
+GRANT ALL ON *.* TO root@'192.168.33.101' IDENTIFIED BY 'redhat';
 FLUSH PRIVILEGES;
 ```
 
