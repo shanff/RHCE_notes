@@ -52,7 +52,7 @@ less ~/.ssh/authorized_keys
 ### 1.2.2. Config Files
 
 ``` shell
-less /etc/ssh/sshd_config'
+less /etc/ssh/sshd_config
 man sshd
 ```
 
