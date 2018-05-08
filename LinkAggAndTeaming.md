@@ -7,6 +7,7 @@
         - [1.1.3. Review team states](#113-review-team-states)
     - [1.2. Configure software bridges](#12-configure-software-bridges)
         - [1.2.1. Creating Bridges](#121-creating-bridges)
+    - [Bridge Creation Caveats](#bridge-creation-caveats)
 
 <!-- /TOC -->
 
@@ -81,3 +82,7 @@ or
 ``` shell
 [root@server ~]# nmcli con add type brudge-slave con-name br1-port0 ifname eno1 master br1
 ```
+
+## Bridge Creation Caveats
+
+> Bridges can only contain Ethernet Interfaces when using NetworkManager.  If bridging a non-Ethernet interface, disconnect the non-ethernet interface, stop and disable NetworkManager and configure bridge details.  Then issue a systemctl restart network to bring everything back up.  Troubleshoot as necessary making sure brige names are correct, interface to be bridged is up and use brctl, teamdctl and teamnl as necessary (if using a teamed interface)
